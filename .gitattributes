@@ -1,0 +1,33 @@
+# ============================================================
+# Git LFS 与换行符配置
+#
+# 重要规则：gitattributes 中「后出现的规则覆盖先出现的」。
+# 因此通用默认规则 * text=auto 必须写在最前面，
+# 否则它会覆盖下面 LFS 规则里的 -text，
+# 导致 .uasset 等二进制被当成文本做 LF/CRLF 转换而损坏。
+# ============================================================
+
+# ---------- 默认：文本类文件做换行符归一化 ----------
+* text=auto
+
+# ---------- UE 核心资产（走 LFS，禁止换行转换）----------
+*.uasset   filter=lfs diff=lfs merge=lfs -text
+*.umap     filter=lfs diff=lfs merge=lfs -text
+*.ubulk    filter=lfs diff=lfs merge=lfs -text
+*.ufont    filter=lfs diff=lfs merge=lfs -text
+*.umeta    filter=lfs diff=lfs merge=lfs -text
+
+# ---------- 美术 / 音频 / 模型 / 视频素材 ----------
+*.png      filter=lfs diff=lfs merge=lfs -text
+*.jpg      filter=lfs diff=lfs merge=lfs -text
+*.jpeg     filter=lfs diff=lfs merge=lfs -text
+*.tga      filter=lfs diff=lfs merge=lfs -text
+*.psd      filter=lfs diff=lfs merge=lfs -text
+*.hdr      filter=lfs diff=lfs merge=lfs -text
+*.exr      filter=lfs diff=lfs merge=lfs -text
+*.wav      filter=lfs diff=lfs merge=lfs -text
+*.mp3      filter=lfs diff=lfs merge=lfs -text
+*.ogg      filter=lfs diff=lfs merge=lfs -text
+*.fbx      filter=lfs diff=lfs merge=lfs -text
+*.abc      filter=lfs diff=lfs merge=lfs -text
+*.mp4      filter=lfs diff=lfs merge=lfs -text
